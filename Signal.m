@@ -26,15 +26,15 @@ title('\bf Sine wave + Noise');
 % Convert from real to integers
 total_wordlength = 16;
 scaling = 7;
-sine_noise_integers = round(sine_norm.*(2^scaling));
+sine_noise_integers = round(sine_norm.*(2^scaling));  //rounding values to the nearest desired value
 figure();plot(1:length(sine_noise_integers), sine_noise_integers);
 xlabel('\bf Time');
 ylabel('\bf Amplitude');
 title('\bf Sine wave + Noise : Scaled Signal');
 
 % Convert from integers to binary
-sine_noise_in_binary_signed = dec2bin(mod((sine_noise_integers),2^total_wordlength),total_wordlength);
-yy = cellstr(sine_noise_in_binary_signed);
-fid = fopen('signal.data', 'wt');
+sine_noise_in_binary_signed = dec2bin(mod((sine_noise_integers),2^total_wordlength),total_wordlength);  //converts the decimal integer to binary row vector
+yy = cellstr(sine_noise_in_binary_signed);  //converting to a cell array of character vectors
+fid = fopen('signal.data', 'wt');  //obtaining the file identifier
 fprintf(fid, '%8s \n', yy{:});
 disp('text file for signal finished');
